@@ -1,17 +1,14 @@
-function rotateRight(head, k) {
-  if (!head || k === 0) return head;
-  let length = 1;
-  let tail = head;
-  while (tail.next) {
-    length++;
-    tail = tail.next;
+const selectionSort = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (minIndex !== i) {
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
   }
-  k = k % length;
-  if (k === 0) return head;
-  let newTail = head;
-  for (let i = 1; i < length - k; i++) newTail = newTail.next;
-  const newHead = newTail.next;
-  newTail.next = null;
-  tail.next = head;
-  return newHead;
-}
+  return arr;
+};
